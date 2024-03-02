@@ -1,27 +1,25 @@
-#ifndef S21_MATRIX_H_
-#define S21_MATRIX_H_
-// TODO Refactor Unit_tests?
-#ifndef SUCCESS
-#define SUCCESS 1
-#endif
-#ifndef FAILURE
-#define FAILURE 0
-#endif
+#ifndef SRC_S21_MATRIX_H_
+#define SRC_S21_MATRIX_H_
+
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-enum {
-    OK = 0,
-    INCORRECT_MATRIX = 1,
-    CALC_ERR = 2,
-};
-
+#define SUCCESS 1
+#define FAILURE 0
 
 typedef struct matrix_struct {
-    double **matrix;
-    int rows;
-    int columns;
+  double **matrix;
+  int rows;
+  int columns;
 } matrix_t;
+
+enum {
+  OK = 0,
+  INCORRECT_MATRIX = 1,
+  CALC_ERROR = 2,
+};
+
 int s21_create_matrix(int rows, int columns, matrix_t *result);
 void s21_remove_matrix(matrix_t *A);
 int s21_eq_matrix(matrix_t *A, matrix_t *B);
@@ -33,8 +31,14 @@ int s21_transpose(matrix_t *A, matrix_t *result);
 int s21_calc_complements(matrix_t *A, matrix_t *result);
 int s21_determinant(matrix_t *A, double *result);
 int s21_inverse_matrix(matrix_t *A, matrix_t *result);
-char *s21_matrix_to_str(matrix_t *A, int precision);
-int s21_copy_matrix(matrix_t *source, matrix_t *copy);
-double s21_get_minor(matrix_t *src, int row, int col);
-#include "Utility.h"
-#endif  // S21_MATRIX_H_
+
+double det(matrix_t *tmp, int n);
+void get_cofactor(matrix_t *A, matrix_t *dest, int row, int col, int n);
+
+int is_correct(matrix_t *A);
+int is_eq_size(matrix_t *A, matrix_t *B);
+void matrix_init_0(matrix_t *A);
+
+void s21_get_matrix(int row, int col, matrix_t *A, matrix_t *result);
+
+#endif  // SRC_S21_MATRIX_H_
