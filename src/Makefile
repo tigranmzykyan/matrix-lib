@@ -7,7 +7,7 @@ UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Darwin)
     LCHECK=$(shell pkg-config --cflags --libs check)
 else ifeq ($(filter Ubuntu, $(OS)), Ubuntu)
-    LCHECK=-lcheck -lsubunit -lm
+	LCHECK=-lcheck -lsubunit -lm
 else ifeq ($(filter Manjaro, $(OS)), Manjaro)
     LCHECK=-lcheck -lm
 else
